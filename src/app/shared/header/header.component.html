@@ -1,41 +1,33 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <!-- Logo -->
-      <a class="navbar-brand" href="#">
-        <img src="assets/logo.png" alt="Logo" width="50" height="50" />
-        Minha Empresa
+  <nav class="navbar  navbar-light bg-light">
+    <div class="container-fluid">
+
+      <a [routerLink]="['/dashboard']" class="d-flex align-items-center custom-spacing">
+        <!-- Foto da empresa -->
+      <div class="d-flex">
+          <img src="assets/logo.jpg" alt="Logo da Empresa" class="rounded-circle" width="40" height="40"/>
+        </div>
+
+        <!-- Título da empresa -->
+        <span class="navbar-brand d-none d-lg-inline ms-lg-3">Encanto Apadrinhamento</span>
       </a>
 
-
-
-      <!-- Menu Selecionáveis -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Selecionável 1</a>
+      <!-- Login com Foto -->
+      <div class="d-flex align-items-center dropdown ms-auto">
+        <img src="assets/logo.jpg" alt="Foto do Usuário" class="rounded-circle" width="40" height="40" role="button"
+          id="userMenu" data-bs-toggle="dropdown" />
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+          <li class="dropdown-item-text text-center">
+            <strong>Olá, Usuário!</strong>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Selecionável 2</a>
+          <li>
+            <hr class="dropdown-divider" />
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Selecionável 3</a>
+          <li>
+            <a class="dropdown-item" *ngIf="!isLoggedIn()" [routerLink]="['/login']">Login</a>
+            <a class="dropdown-item text-danger" *ngIf="isLoggedIn()" (click)="logout()">Logout</a>
           </li>
         </ul>
-      </div>
-
-      <!-- Login com Foto -->
-      <div class="d-flex align-items-center">
-        <span class="me-2">Olá, Usuário!</span>
-        <img
-          src="assets/logo.png"
-          alt="Foto do Usuário"
-          class="rounded-circle"
-          width="40"
-          height="40"
-        />
-        <a class="btn btn-outline-primary ms-3" *ngIf="!isLoggedIn()" [routerLink]="['/login']">Login</a>
-      <a class="btn btn-outline-danger ms-3" *ngIf="isLoggedIn()" (click)="logout()">Logout</a>
       </div>
     </div>
   </nav>

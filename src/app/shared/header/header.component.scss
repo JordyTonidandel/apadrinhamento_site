@@ -1,5 +1,87 @@
+/* Garante que o header ocupe toda a largura */
 header {
-  .navbar {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  position: fixed; /* Fixa o header no topo */
+  top: 0;
+  left: 0;
+  z-index: 1030; /* Garante que o header fique acima do conteúdo */
+}
+
+/* Ajusta o navbar para ocupar toda a largura */
+.navbar {
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destaque */
+
+  .navbar-toggler {
+    border: none; /* Remove borda do botão de toggle */
+  }
+}
+
+/* Foto do usuário */
+.dropdown .dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  min-width: 150px;
+  text-align: left;
+}
+
+.dropdown-menu .dropdown-item-text {
+  padding: 10px;
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 10px;
+}
+
+.navbar-brand img {
+  max-height: 50px; /* Ajusta a altura máxima do logo */
+}
+
+.nav-item .nav-link {
+  color: #333; /* Cor padrão do texto */
+}
+
+.nav-item .nav-link:hover {
+  color: #007bff; /* Cor de destaque ao passar o mouse */
+}
+
+.navbar-toggler {
+  border: none; /* Remove a borda do botão de toggle */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column; /* Empilha os elementos no mobile */
+    text-align: center;
+  }
+
+  .navbar-brand {
+    margin-bottom: 10px; /* Adiciona espaçamento entre os itens */
+    margin-right: auto;
+  }
+
+  .navbar-brand.dropdown {
+    margin-right: auto;
+  }
+
+  .navbar-brand img {
+    margin-left: 0; /* Garante que a imagem fique alinhada à esquerda */
+  }
+
+  .navbar-brand + .navbar-brand {
+    display: none; /* Esconde o título no mobile */
+  }
+
+  .d-flex {
+    flex-direction: row; /* Mantém alinhado na horizontal */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn {
+    margin-top: 5px; /* Adiciona espaço entre os botões */
   }
 }
