@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://sua-api.com'; // URL da sua API
+  private apiUrl = 'https://localhost:7115/api/v1';
   private loggedIn = new BehaviorSubject<boolean>(this.isTokenValid());
 
   constructor(private http: HttpClient, private router: Router) {}
