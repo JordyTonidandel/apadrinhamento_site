@@ -2,14 +2,18 @@
   <nav class="navbar  navbar-light bg-light">
     <div class="container-fluid">
 
-      <a [routerLink]="['/dashboard']" class="d-flex align-items-center custom-spacing">
-        <!-- Foto da empresa -->
-      <div class="d-flex">
-          <img src="assets/logo.jpg" alt="Logo da Empresa" class="rounded-circle" width="40" height="40"/>
-        </div>
+      <a (click)="navigateOnClick()">
+        <div class="d-flex align-items-center">
 
-        <!-- Título da empresa -->
-        <span class="navbar-brand d-none d-lg-inline ms-lg-3">Encanto Apadrinhamento</span>
+          <!-- Icon da Empresa -->
+          <fa-icon [icon]="faMusic"></fa-icon>
+
+          <!-- Título da empresa -->
+          <span class="navbar-brand ms-3 empresa-titulo">
+            <span class="encanto">Encanto Apadrinhamento</span>
+
+          </span>
+        </div>
       </a>
 
       <!-- Login com Foto -->
@@ -18,14 +22,15 @@
           id="userMenu" data-bs-toggle="dropdown" />
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
           <li class="dropdown-item-text text-center">
-            <strong>Olá, Usuário!</strong>
+            <strong *ngIf="isLoggedIn()">Olá, {{ user }}!</strong>
+            <strong *ngIf="!isLoggedIn()">Olá, Usuário!</strong>
           </li>
           <li>
             <hr class="dropdown-divider" />
           </li>
           <li>
-            <a class="dropdown-item" *ngIf="!isLoggedIn()" [routerLink]="['/login']">Login</a>
-            <a class="dropdown-item text-danger" *ngIf="isLoggedIn()" (click)="logout()">Logout</a>
+            <a class="dropdown-item text-success text-center" *ngIf="!isLoggedIn()" [routerLink]="['/login']">Login</a>
+            <a class="dropdown-item text-danger text-center" *ngIf="isLoggedIn()" (click)="logout()">Logout</a>
           </li>
         </ul>
       </div>

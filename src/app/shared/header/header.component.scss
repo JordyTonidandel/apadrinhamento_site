@@ -1,23 +1,21 @@
-/* Garante que o header ocupe toda a largura */
+
 header {
   width: 100%;
-  position: fixed; /* Fixa o header no topo */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1030; /* Garante que o header fique acima do conteúdo */
+  z-index: 1030;
 }
 
-/* Ajusta o navbar para ocupar toda a largura */
 .navbar {
   width: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destaque */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
   .navbar-toggler {
-    border: none; /* Remove borda do botão de toggle */
+    border: none;
   }
 }
 
-/* Foto do usuário */
 .dropdown .dropdown-toggle {
   cursor: pointer;
 }
@@ -36,30 +34,61 @@ header {
 }
 
 .navbar-brand img {
-  max-height: 50px; /* Ajusta a altura máxima do logo */
+  max-height: 50px;
 }
 
 .nav-item .nav-link {
-  color: #333; /* Cor padrão do texto */
+  color: #333;
 }
 
 .nav-item .nav-link:hover {
-  color: #007bff; /* Cor de destaque ao passar o mouse */
+  color: #007bff;
 }
 
 .navbar-toggler {
-  border: none; /* Remove a borda do botão de toggle */
+  border: none;
 }
 
-/* Responsividade para telas menores */
+.empresa-titulo {
+  font-family: 'Arial', sans-serif;
+  font-size: 0.76rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 8px;
+
+  .encanto {
+    color: #4267B2;
+  }
+
+  .apadrinhamento {
+    background: linear-gradient(90deg, #4267B2, #1877F2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+
+  &:hover {
+    .encanto {
+      transform: scale(1.02);
+      transition: transform 0.3s ease-in-out;
+      text-shadow: 1px 1px 6px rgba(24, 119, 242, 0.5);
+    }
+  }
+}
+
+
 @media (max-width: 768px) {
   .d-flex {
-    flex-direction: column; /* Empilha os elementos no mobile */
+    flex-direction: column;
     text-align: center;
   }
 
   .navbar-brand {
-    margin-bottom: 10px; /* Adiciona espaçamento entre os itens */
+    margin-bottom: 10px;
     margin-right: auto;
   }
 
@@ -68,20 +97,20 @@ header {
   }
 
   .navbar-brand img {
-    margin-left: 0; /* Garante que a imagem fique alinhada à esquerda */
+    margin-left: 0;
   }
 
   .navbar-brand + .navbar-brand {
-    display: none; /* Esconde o título no mobile */
+    display: none;
   }
 
   .d-flex {
-    flex-direction: row; /* Mantém alinhado na horizontal */
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 
   .btn {
-    margin-top: 5px; /* Adiciona espaço entre os botões */
+    margin-top: 5px;
   }
 }
