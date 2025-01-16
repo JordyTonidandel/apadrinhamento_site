@@ -1,1 +1,42 @@
-<p>dashboard works!</p>
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+  <fa-icon [icon]="faBars"></fa-icon>
+</button>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menus</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <nav class="sidebar">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of menus">
+          <div
+            class="d-flex align-items-center justify-content-between cursor-pointer"
+            (click)="toggleMenu(item.label)">
+            <div>
+              <fa-icon [icon]="item.icon" class="me-2"></fa-icon>
+              <span>{{ item.label }}</span>
+            </div>
+            <i class="material-icons">
+              {{ expandedMenu === item.label ? '-' : '+' }}
+            </i>
+
+          </div>
+
+          <ul
+            [ngClass]="{'collapse show': expandedMenu === item.label, 'collapse': expandedMenu !== item.label}"
+            class="submenu list-unstyled ps-4 mt-2">
+            <li *ngFor="let child of item.children">
+              <a
+                [routerLink]="child.route"
+                class="submenu-item d-block py-1 text-decoration-none text-dark">
+                {{ child.label }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

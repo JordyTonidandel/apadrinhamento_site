@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(credentials: { email: string; password: string }) {
+  async login(credentials: { email: string; password: string }) {
     return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, credentials).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token)
@@ -26,7 +26,7 @@ export class AuthService {
     })
   }
 
-  logout() {
+  async logout() {
     localStorage.removeItem('token')
     this.loggedIn.next(false)
     this.router.navigate(['/'])
@@ -44,7 +44,7 @@ export class AuthService {
     return this.loggedIn.asObservable()
   }
 
-  getDecodedToken(): any {
+  async getDecodedToken(): Promise<any> {
     const token = localStorage.getItem('token')
     if (!token) return null
 
@@ -52,29 +52,34 @@ export class AuthService {
     return helper.decodeToken(token)
   }
 
-  getUserRole(): string | null {
-    const decodedToken = this.getDecodedToken()
-    return decodedToken ? decodedToken.role : null
+  async getUserRoles(): Promise<string[]> {
+    const decodedToken = await this.getDecodedToken()
+    const roles = decodedToken ? decodedToken.role : []
+    return roles ? roles : []
   }
 
-  getUserRoles(): string[] {
-    const decodedToken = this.getDecodedToken()
-    return decodedToken ? decodedToken.roles : []
+  async isOwner(): Promise<boolean> {
+    const roles = await this.getUserRoles()
+    return roles.includes('Owner')
   }
 
-  isOwner(): boolean {
-    return this.getUserRoles().includes('Owner')
+  async isAdministrator(): Promise<boolean> {
+    const roles = await this.getUserRoles()
+    return roles.includes('Administrator')
   }
 
-  isAdministrator(): boolean {
-    return this.getUserRoles().includes('Administrator')
+  async isCompany(): Promise<boolean> {
+    const roles = await this.getUserRoles()
+    return roles.includes('Company')
   }
 
-  isCompany(): boolean {
-    return this.getUserRoles().includes('Company')
+  async isUser(): Promise<boolean> {
+    const roles = await this.getUserRoles()
+    return roles.includes('User')
   }
 
-  isUser(): boolean {
-    return this.getUserRoles().includes('User')
+  async hasRole(role: string): Promise<boolean> {
+    const roles = await this.getUserRoles()
+    return roles.includes(role)
   }
 }
