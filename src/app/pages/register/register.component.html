@@ -21,6 +21,24 @@
           </div>
         </div>
 
+        <!-- Sobrenome -->
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Sobrenome</label>
+          <input
+            type="text"
+            id="lastName"
+            class="form-control"
+            formControlName="lastName"
+            [class.is-invalid]="lastName?.invalid && lastName?.touched"
+          />
+          <div *ngIf="lastName?.invalid && lastName?.touched" class="text-danger">
+            <small *ngIf="lastName?.errors?.['required']">Sobrenome é obrigatório.</small>
+            <small *ngIf="lastName?.errors?.['minlength']">
+              O sobrenome deve ter no mínimo 3 caracteres.
+            </small>
+          </div>
+        </div>
+
         <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>

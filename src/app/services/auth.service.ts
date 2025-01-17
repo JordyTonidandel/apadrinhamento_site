@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { BehaviorSubject } from 'rxjs'
+import { environment } from '../config'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:7115/api/v1'
+  private apiUrl = environment.apiBaseUrl;
   private loggedIn = new BehaviorSubject<boolean>(this.isTokenValid())
 
   constructor(private http: HttpClient, private router: Router) {}

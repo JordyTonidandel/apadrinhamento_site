@@ -1,3 +1,4 @@
+import { RegisterService } from './../../services/register.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -5,6 +6,7 @@ import { AuthService } from './../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { last } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -23,12 +25,13 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    private registerService: RegisterService,
     private router: Router,
     private toastr: ToastrService
   ) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
@@ -48,16 +51,16 @@ export class RegisterComponent {
   register() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
-      this.toastr.success('Registro realizado com sucesso!' , 'Sucesso');
-      // this.authService.register(this.registerForm.value).subscribe(
-      //   () => {
-      //     alert('Registro realizado com sucesso!');
-      //     this.router.navigate(['/login']);
-      //   },
-      //   (error) => {
-      //     alert('Ocorreu um erro ao registrar. Tente novamente.');
-      //   }
-      // );
+      this.registerService.register(this.registerForm.value).subscribe({
+        next: () => {
+          this.toastr.success('Registro realizado com sucesso!');
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Erro ao registrar:', err);
+          this.toastr.error('Ocorreu um erro ao registrar. Tente novamente.');
+        },
+      });
     } else {
       alert('Por favor, corrija os erros no formulário.');
     }
@@ -83,5 +86,9 @@ export class RegisterComponent {
 
   get confirmPassword() {
     return this.registerForm.get('confirmPassword');
+  }
+
+  get lastName() {
+    return this.registerForm.get('lastName');
   }
 }
