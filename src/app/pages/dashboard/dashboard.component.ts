@@ -34,7 +34,7 @@ export class DashboardComponent {
   }
 
   toggleMenu(label: string): void {
-    this.expandedMenu = this.expandedMenu === label ? null : label; // Alterna o estado de expansão
+    this.expandedMenu = this.expandedMenu === label ? null : label;
   }
 
   async logout() {

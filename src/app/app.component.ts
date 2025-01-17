@@ -12,9 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'encanto_apadrinhamento';
-  
+
   hideHeaderFooter: boolean = false;
-  private routesToHideHeaderFooter = ['/login'];
+  private routesToHideHeaderFooter = ['/login', '/registro'];
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {

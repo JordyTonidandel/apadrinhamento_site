@@ -29,7 +29,7 @@
             class="submenu list-unstyled ps-4 mt-2">
             <li *ngFor="let child of item.children">
               <a
-                [routerLink]="child.route"
+                [routerLink]="[child.route]"
                 class="submenu-item d-block py-1 text-decoration-none text-dark">
                 {{ child.label }}
               </a>

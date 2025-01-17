@@ -25,14 +25,13 @@ export class MenuService {
   constructor() { }
 
   async getMenuItems(roles: string[]): Promise<MenuDashboard[]> {
-    return this.menuItems.value.filter((menu) => {
-      if (menu.roles.some((role) => roles.includes(role))) {
-        menu.children = menu.children.filter((submenu) => {
-          return submenu.roles.some((role) => roles.includes(role));
-        });
-        return true;
-      }
-      return false;
-    });
+    return this.menuItems.value
+    .filter((menu) => menu.roles.some((role) => roles.includes(role)))
+    .map((menu) => ({
+      ...menu,
+      children: menu.children?.filter((submenu) =>
+        submenu.roles.some((role) => roles.includes(role))
+      ),
+    }));
   }
 }

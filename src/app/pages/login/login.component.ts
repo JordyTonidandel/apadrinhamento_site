@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule], // Import ReactiveFormsModule
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule], // Import ReactiveFormsModule
 })
 export class LoginComponent {
   loginForm: FormGroup;

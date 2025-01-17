@@ -5,7 +5,7 @@ export interface MenuDashboard {
   icon: IconDefinition;
   route: string;
   roles: string[];
-  children: SubMenuDashboard[];
+  children?: SubMenuDashboard[];
 }
 
 export interface SubMenuDashboard {
